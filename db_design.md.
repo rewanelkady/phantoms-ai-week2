@@ -1,0 +1,22 @@
+# Appointment Booking System - Database Design
+
+## 1. Assumptions and Architecture
+- Users: The system supports multiple users, categorized into Patients/Customers and Doctors/Service Providers.
+- Appointments: Each appointment links one patient to one doctor with a specific timestamp and status.
+- Tracking Canceled Appointments: Status fields are used (Confirmed, Canceled, Completed) to maintain a complete historical record instead of deleting records.
+
+## 2. Database Schema
+
+### Users Table
+- user_id (PRIMARY KEY, INTEGER)
+- name (TEXT)
+- email (TEXT)
+- role (TEXT) -> (Patient / Doctor)
+
+### Appointments Table
+- appointment_id (PRIMARY KEY, INTEGER)
+- patient_id (INTEGER, FOREIGN KEY references Users)
+- doctor_id (INTEGER, FOREIGN KEY references Users)
+- appointment_date (DATETIME)
+- status (TEXT) -> ('Confirmed', 'Canceled', 'Completed')
+- created_at (DATETIME)
